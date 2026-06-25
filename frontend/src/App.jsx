@@ -16,10 +16,16 @@ function App() {
         }
       );
 
-      alert(res.data.message);
-      setIsLoggedIn(true);
+      if (res.data.message === "Login Successful") {
+        alert("Login Successful");
+        setIsLoggedIn(true);
+      } else {
+        alert(res.data.message);
+        setIsLoggedIn(false);
+      }
     } catch (err) {
-      alert("Login Failed");
+      alert("Server Error");
+      setIsLoggedIn(false);
       console.log(err);
     }
   };
@@ -41,37 +47,51 @@ function App() {
             padding: "30px",
             borderRadius: "15px",
             textAlign: "center",
-            width: "300px",
+            width: "320px",
+            boxShadow: "0px 0px 15px rgba(0,0,0,0.2)",
           }}
         >
           <h2>🎓 Student Login</h2>
 
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Enter Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            style={{ width: "100%", margin: "10px 0", padding: "8px" }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              margin: "10px 0",
+              borderRadius: "5px",
+              border: "1px solid gray",
+            }}
           />
 
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Enter Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={{ width: "100%", margin: "10px 0", padding: "8px" }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              margin: "10px 0",
+              borderRadius: "5px",
+              border: "1px solid gray",
+            }}
           />
 
           <button
             onClick={handleLogin}
             style={{
-              background: "blue",
-              color: "white",
-              padding: "10px",
               width: "100%",
+              padding: "10px",
+              background: "#2563eb",
+              color: "white",
               border: "none",
               borderRadius: "5px",
               cursor: "pointer",
+              fontSize: "16px",
             }}
           >
             Login
@@ -84,21 +104,32 @@ function App() {
             padding: "30px",
             borderRadius: "15px",
             textAlign: "center",
+            boxShadow: "0px 0px 15px rgba(0,0,0,0.2)",
           }}
         >
           <h1>🎉 Welcome Dashboard</h1>
 
-          <p>Student Name: Harshit</p>
-          <p>Work: MERN Developer</p>
-          <p>Task: Login System Completed</p>
+          <p>
+            <strong>Student Name:</strong> Harshit
+          </p>
+
+          <p>
+            <strong>Work:</strong> MERN Developer
+          </p>
+
+          <p>
+            <strong>Status:</strong> Login Successful ✅
+          </p>
 
           <button
             onClick={() => setIsLoggedIn(false)}
             style={{
+              marginTop: "20px",
+              padding: "10px 20px",
               background: "red",
               color: "white",
-              padding: "10px",
               border: "none",
+              borderRadius: "5px",
               cursor: "pointer",
             }}
           >
