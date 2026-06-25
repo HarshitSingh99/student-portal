@@ -8,51 +8,58 @@ function App() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://student-portal-backend-w8dj.onrender.com/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
       alert(res.data.message);
       setIsLoggedIn(true);
     } catch (err) {
       alert("Login Failed");
+      console.log(err);
     }
   };
 
   return (
-    <div style={{
-      height: "100vh",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      background: "linear-gradient(to right, #667eea, #764ba2)"
-    }}>
-
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "linear-gradient(to right, #667eea, #764ba2)",
+      }}
+    >
       {!isLoggedIn ? (
-        <div style={{
-          background: "white",
-          padding: "30px",
-          borderRadius: "15px",
-          textAlign: "center",
-          width: "300px"
-        }}>
-
+        <div
+          style={{
+            background: "white",
+            padding: "30px",
+            borderRadius: "15px",
+            textAlign: "center",
+            width: "300px",
+          }}
+        >
           <h2>🎓 Student Login</h2>
 
           <input
+            type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            style={{ width: "100%", margin: "10px", padding: "8px" }}
+            style={{ width: "100%", margin: "10px 0", padding: "8px" }}
           />
 
           <input
-            placeholder="Password"
             type="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={{ width: "100%", margin: "10px", padding: "8px" }}
+            style={{ width: "100%", margin: "10px 0", padding: "8px" }}
           />
 
           <button
@@ -63,21 +70,22 @@ function App() {
               padding: "10px",
               width: "100%",
               border: "none",
-              borderRadius: "5px"
+              borderRadius: "5px",
+              cursor: "pointer",
             }}
           >
             Login
           </button>
-
         </div>
       ) : (
-        <div style={{
-          background: "white",
-          padding: "30px",
-          borderRadius: "15px",
-          textAlign: "center"
-        }}>
-
+        <div
+          style={{
+            background: "white",
+            padding: "30px",
+            borderRadius: "15px",
+            textAlign: "center",
+          }}
+        >
           <h1>🎉 Welcome Dashboard</h1>
 
           <p>Student Name: Harshit</p>
@@ -90,15 +98,14 @@ function App() {
               background: "red",
               color: "white",
               padding: "10px",
-              border: "none"
+              border: "none",
+              cursor: "pointer",
             }}
           >
             Logout
           </button>
-
         </div>
       )}
-
     </div>
   );
 }
