@@ -1,9 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const API = "https://student-portal-backend-w8dj.onrender.com/api/auth";
 
-function Register({ setPage }) {
+function Register() {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,11 +26,7 @@ function Register({ setPage }) {
 
       alert(res.data.message);
 
-      setName("");
-      setEmail("");
-      setPassword("");
-
-      setPage("login");
+      navigate("/login");
     } catch (err) {
       alert("Registration Failed");
     }
@@ -47,17 +46,15 @@ function Register({ setPage }) {
         </p>
 
         <input
-          type="text"
-          placeholder="Full Name"
-          className="w-full p-3 border rounded-xl mb-4 focus:ring-2 focus:ring-purple-500 outline-none"
+          placeholder="Name"
+          className="w-full p-3 border rounded-xl mb-4"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
 
         <input
-          type="email"
           placeholder="Email"
-          className="w-full p-3 border rounded-xl mb-4 focus:ring-2 focus:ring-purple-500 outline-none"
+          className="w-full p-3 border rounded-xl mb-4"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -65,22 +62,22 @@ function Register({ setPage }) {
         <input
           type="password"
           placeholder="Password"
-          className="w-full p-3 border rounded-xl mb-6 focus:ring-2 focus:ring-purple-500 outline-none"
+          className="w-full p-3 border rounded-xl mb-6"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
         <button
           onClick={register}
-          className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-semibold transition"
+          className="w-full bg-purple-600 text-white py-3 rounded-xl hover:bg-purple-700"
         >
           Register
         </button>
 
-        <p className="text-center mt-6">
+        <p className="text-center mt-5">
           Already have an account?
           <span
-            onClick={() => setPage("login")}
+            onClick={() => navigate("/login")}
             className="text-purple-700 font-bold cursor-pointer ml-2"
           >
             Login

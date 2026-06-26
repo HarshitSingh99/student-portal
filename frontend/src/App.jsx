@@ -1,29 +1,20 @@
-import { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 
 function App() {
-  const [page, setPage] = useState("login");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  if (isLoggedIn) {
-    return <Dashboard setIsLoggedIn={setIsLoggedIn} />;
-  }
-
   return (
-    <>
-      {page === "login" ? (
-        <Login
-          setPage={setPage}
-          setIsLoggedIn={setIsLoggedIn}
-        />
-      ) : (
-        <Register
-          setPage={setPage}
-        />
-      )}
-    </>
+    <Routes>
+      <Route path="/" element={<Navigate to="/login" />} />
+
+      <Route path="/login" element={<Login />} />
+
+      <Route path="/register" element={<Register />} />
+
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
   );
 }
 
