@@ -23,12 +23,20 @@ function Login() {
       });
 
       if (res.data.message === "Login Successful") {
+
+        // Save Email
+        localStorage.setItem("email", email);
+
         alert("Welcome Back 🎉");
+
         navigate("/dashboard");
+
       } else {
         alert(res.data.message);
       }
+
     } catch (err) {
+      console.log(err);
       alert("Server Error");
     }
   };
